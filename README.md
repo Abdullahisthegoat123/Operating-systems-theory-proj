@@ -82,7 +82,7 @@ Ensure you have the following installed on your Linux system:
 
 1. Clone the repository
    ```sh
-   git clone https://github.com/Abdullahisthegoat123/Operating-Systems-theory-Project.git
+   git clone https://github.com/Abdullahisthegoat123/Operating-systems-theory-proj.git
    ```
 
 2. Navigate to the project directory
