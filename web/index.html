@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Collaborative Document</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <!-- Login (no session) -->
+    <section id="loginView" class="login-screen">
+      <div class="login-backdrop"></div>
+      <div class="login-wrap">
+        <div class="login-hero">
+          <div class="login-badge">OS Lab</div>
+          <h1 class="login-title">Multi-User Document Editor</h1>
+          <p class="login-sub">
+            Reader–writer locks, semaphores, shared memory — ab sab <strong>browser</strong> se: admin ya user
+            bina terminal switch ke.
+          </p>
+        </div>
+        <div class="login-cards">
+          <div class="login-card">
+            <h2>Administrator</h2>
+            <p class="muted">Users, history, full document access.</p>
+            <button type="button" class="btn btn-primary btn-block" id="btnLoginOwner">Sign in as admin</button>
+          </div>
+          <div class="login-card">
+            <h2>Registered user</h2>
+            <p class="muted">Jo username control file mein ho.</p>
+            <label for="loginUsername">Username</label>
+            <input id="loginUsername" maxlength="49" autocomplete="username" placeholder="e.g. alice" />
+            <button type="button" class="btn btn-primary btn-block" id="btnLoginUser" style="margin-top: 0.75rem">
+              Sign in
+            </button>
+          </div>
+        </div>
+        <p class="login-foot">Pehle server chalao: <code>./web_server</code> phir yahan refresh karo.</p>
+      </div>
+    </section>
+
+    <div id="flash" class="flash" role="status"></div>
+
+    <!-- App (logged in) -->
+    <div id="appShell" class="hidden">
+      <header class="app-header">
+        <div class="brand">
+          <div class="brand-mark">RW</div>
+          <div>
+            <h1>Collaborative document</h1>
+            <p>Locks · IPC · Shared state</p>
+          </div>
+        </div>
+        <div class="header-actions">
+          <span id="pillMode" class="pill">…</span>
+          <span id="pillUser" class="pill">…</span>
+          <button type="button" class="btn btn-ghost btn-sm" id="btnLogout">Switch account</button>
+        </div>
+      </header>
+
+      <main class="layout owner">
+        <aside class="sidebar">
+          <h2>Menu</h2>
+          <button type="button" class="nav-btn active" data-view="doc">Document</button>
+          <div class="owner-only">
+            <h2 class="nav-section-title">Admin</h2>
+            <button type="button" class="nav-btn" data-view="users">Users</button>
+            <button type="button" class="nav-btn" data-view="history">History</button>
+          </div>
+        </aside>
+
+        <section class="main-card" data-panel="doc">
+          <div class="toolbar">
+            <button type="button" class="btn btn-primary" id="btnReload">Reload</button>
+            <button type="button" class="btn btn-primary" id="btnSave">Save</button>
+            <span class="hint">Read = shared lock · Save = exclusive write lock</span>
+          </div>
+          <label for="docBody">shared_docs.txt</label>
+          <textarea id="docBody" class="doc-editor" spellcheck="false" rows="18" placeholder="Loading…"></textarea>
+        </section>
+
+        <section class="main-card owner-only" data-panel="users" style="display: none">
+          <h2 class="panel-title">Users</h2>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Priority</th>
+                  <th>Access</th>
+                  <th>PID</th>
+                  <th>Active</th>
+                </tr>
+              </thead>
+              <tbody id="usersBody"></tbody>
+            </table>
+          </div>
+
+          <div class="grid-2 cols" style="margin-top: 1rem">
+            <form id="addUserForm">
+              <h3 class="panel-subtitle">Add user</h3>
+              <label>Username</label>
+              <input id="newName" required maxlength="49" autocomplete="off" />
+              <label>Priority</label>
+              <select id="newPri">
+                <option value="0">0 — high</option>
+                <option value="1" selected>1 — low</option>
+              </select>
+              <label>Access</label>
+              <select id="newAcc">
+                <option value="1">1 read-only</option>
+                <option value="2">2 write-only</option>
+                <option value="3" selected>3 read + write</option>
+              </select>
+              <button class="btn btn-primary btn-block" type="submit" style="margin-top: 0.6rem">Add</button>
+            </form>
+
+            <div>
+              <h3 class="panel-subtitle">Remove user</h3>
+              <label>Username</label>
+              <input id="rmName" maxlength="49" autocomplete="off" />
+              <button type="button" class="btn btn-danger btn-block" id="btnRemoveUser" style="margin-top: 0.6rem">
+                Remove
+              </button>
+
+              <form id="updateUserForm" style="margin-top: 1rem">
+                <h3 class="panel-subtitle">Update user</h3>
+                <label>Username</label>
+                <input id="upName" required maxlength="49" autocomplete="off" />
+                <label>Priority</label>
+                <select id="upPri">
+                  <option value="0">0 — high</option>
+                  <option value="1">1 — low</option>
+                </select>
+                <label>Access</label>
+                <select id="upAcc">
+                  <option value="1">1 read-only</option>
+                  <option value="2">2 write-only</option>
+                  <option value="3">3 read + write</option>
+                </select>
+                <button class="btn btn-primary btn-block" type="submit" style="margin-top: 0.6rem">Update</button>
+              </form>
+            </div>
+          </div>
+        </section>
+
+        <section class="main-card owner-only" data-panel="history" style="display: none">
+          <div class="toolbar">
+            <button type="button" class="btn btn-ghost" id="btnPushHist">Push snapshot</button>
+            <button type="button" class="btn btn-danger" id="btnPopHist">Pop snapshot</button>
+            <button type="button" class="btn btn-primary" id="btnRefreshHist">Refresh log</button>
+          </div>
+          <div id="historyOut" class="history-box">(open History tab)</div>
+        </section>
+      </main>
+
+      <p class="footer-note">Sirf <code>./web_server</code> zaroori hai — browser se admin / user switch: <strong>Switch account</strong>.</p>
+    </div>
+
+    <script src="/js/app.js"></script>
+  </body>
+</html>
