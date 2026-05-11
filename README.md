@@ -1,11 +1,5 @@
 <a id="readme-top"></a>
 
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![License][license-shield]][license-url]
-
 <br />
 <div align="center">
   <h3 align="center">Multi-User Document Editor</h3>
@@ -13,14 +7,8 @@
   <p align="center">
     A collaborative document system with advanced reader-writer synchronization
     <br />
-    <a href="https://github.com/sidhartsami/CS2006-Multi-User-Document-Editor"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/sidhartsami/CS2006-Multi-User-Document-Editor">View Demo</a>
-    ·
-    <a href="https://github.com/sidhartsami/CS2006-Multi-User-Document-Editor/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
-    ·
-    <a href="https://github.com/sidhartsami/CS2006-Multi-User-Document-Editor/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
   </p>
 </div>
 
@@ -41,12 +29,6 @@
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#system-architecture">System Architecture</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
 
@@ -100,7 +82,7 @@ Ensure you have the following installed on your Linux system:
 
 1. Clone the repository
    ```sh
-   git clone https://github.com/sidhartsami/CS2006-Multi-User-Document-Editor.git
+   git clone https://github.com/Abdullahisthegoat123/Operating-Systems-theory-Project.git
    ```
 
 2. Navigate to the project directory
@@ -233,26 +215,12 @@ If you have a suggestion that would make this better, please fork the repo and c
 
 ### Contributors
 
-- **Sidhart Sami** - *Project Lead & Core Development*
-- **Aliyan Munawwar** - *Synchronization Implementation*
-- **Hadi Armaghan** - *User Management System*
-- **Zubair Ahmed** - *Testing & Documentation*
+- **Abdullah Karim** - *Project Lead & Core Development*
+- **Sahil Kumar** - *Synchronization Implementation*
+- **Usman Hassan** - *User Management System*
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-## License
-
-Distributed under the MIT License. See `LICENSE.txt` for more information.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-## Contact
-
-Sidhart Sami - sidhart.sami@gmail.com
-
-Project Link: [https://github.com/sidhartsami/CS2006-Multi-User-Document-Editor](https://github.com/sidhartsami/CS2006-Multi-User-Document-Editor)
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Acknowledgments
 
@@ -263,16 +231,3 @@ Project Link: [https://github.com/sidhartsami/CS2006-Multi-User-Document-Editor]
 - [Advanced Programming in the UNIX Environment](https://www.apuebook.com/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-[contributors-shield]: https://img.shields.io/github/contributors/sidhartsami/CS2006-Multi-User-Document-Editor.svg?style=for-the-badge
-[contributors-url]: https://github.com/sidhartsami/CS2006-Multi-User-Document-Editor/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/sidhartsami/CS2006-Multi-User-Document-Editor.svg?style=for-the-badge
-[forks-url]: https://github.com/sidhartsami/CS2006-Multi-User-Document-Editor/network/members
-[stars-shield]: https://img.shields.io/github/stars/sidhartsami/CS2006-Multi-User-Document-Editor.svg?style=for-the-badge
-[stars-url]: https://github.com/sidhartsami/CS2006-Multi-User-Document-Editor/stargazers
-[issues-shield]: https://img.shields.io/github/issues/sidhartsami/CS2006-Multi-User-Document-Editor.svg?style=for-the-badge
-[issues-url]: https://github.com/sidhartsami/CS2006-Multi-User-Document-Editor/issues
-[license-shield]: https://img.shields.io/github/license/sidhartsami/CS2006-Multi-User-Document-Editor.svg?style=for-the-badge
-[license-url]: https://github.com/sidhartsami/CS2006-Multi-User-Document-Editor/blob/master/LICENSE.txt
-[C-badge]: https://img.shields.io/badge/C-00599C?style=for-the-badge&logo=c&logoColor=white
-[C-url]: https://en.wikipedia.org/wiki/C_(programming_language)
